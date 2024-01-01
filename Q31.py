@@ -12,11 +12,16 @@ def classify_poker(cards):
   # 檢查輸入是否有效。
   if len(cards) != 5:
     return "Invalid"
-  for card in cards:
+  for i in range(len(cards)):
+    card = cards[i]
     if len(card) > 3:
       return "Invalid"
     if card[0] not in "CDHS":
       return "Invalid"
+    # 計算有沒有重複出現的牌
+    for j in range(i+1,len(cards)):
+      if cards[j] == card:
+        return "Invalid"
   # 計算每張牌出現的次數。
   counts = {}
   for card in cards:

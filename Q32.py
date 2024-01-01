@@ -64,15 +64,17 @@ def main():
 
     # 檢查輸入是否有效。
     if len(cards) != 5:
-      print("Invalid")
-      continue
-    for card in cards:
+      return "Invalid"
+    for i in range(len(cards)):
+      card = cards[i]
       if len(card) > 3:
-        print("Invalid")
-        continue
+        return "Invalid"
       if card[0] not in "CDHS":
-        print("Invalid")
-        continue
+        return "Invalid"
+      # 計算有沒有重複出現的牌
+      for j in range(i+1,len(cards)):
+        if cards[j] == card:
+          return "Invalid"
         
     # 判斷五張牌是同花、順子還是其他
     if is_flush(cards):
